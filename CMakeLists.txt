@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.8)
 
 file(GLOB IMGUIZMO_SRC CMAKE_CONFIGURE_DEPENDS *.h  *.cpp)
 
-find_package(imgui)
 add_library(ImGuizmo STATIC ${IMGUIZMO_SRC})
 set_target_properties(ImGuizmo PROPERTIES
 	CMAKE_CXX_STANDARD 20

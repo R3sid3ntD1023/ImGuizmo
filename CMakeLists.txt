@@ -1,9 +1,20 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.10)
 
-file(GLOB IMGUIZMO_SRC CMAKE_CONFIGURE_DEPENDS *.h *.cpp)
 find_package(imgui CONFIG REQUIRED)
-add_library(ImGuizmo STATIC ${IMGUIZMO_SRC})
-set_property(TARGET ImGuizmo PROPERTY CXX_STANDARD 20)
+
+set(IMGUIZMO_SOURCES
+   ${CMAKE_CURRENT_SOURCE_DIR}/ImGuizmo.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/ImSequencer.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/ImCurveEdit.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/GraphEditor.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/ImGradient.cpp
+)
+
+
+add_library(ImGuizmo STATIC ${IMGUIZMO_SOURCES})
+add_library(ImGuizmo::ImGuizmo ALIAS ImGuizmo)
+
 target_include_directories(ImGuizmo PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(ImGuizmo PUBLIC imgui::imgui)
+target_link_libraries(ImGuizmo PUBLIC imgui)
+target_compile_definitions(ImGuizmo PUBLIC _CRT_SECURE_NO_WARNINGS)
 
